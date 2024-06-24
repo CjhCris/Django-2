@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="{% static 'jquery/jquery.min.js' %}"></script>
 </head>
 <body>
     
@@ -18,37 +19,40 @@
 
     <div id="idMensajes">
         {% if mensaje %}
-            {{mensaje}}
+            {{ mensaje }}
         {% endif %}
     </div>
 
-        <table>
-            {% if alumnos %}
+    <table>
+        <thead>
+            <tr>
                 <th>Rut</th>
                 <th>Nombre</th>
                 <th>Apellido P.</th>
                 <th>Eliminar</th>
                 <th>Modificar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if alumnos %}
                 {% for x in alumnos %}
                     <tr>
                         <td>{{ x.rut }}</td>
                         <td>{{ x.nombre }}</td>
                         <td>{{ x.apellido_paterno }}</td>
-                        <td> <a href="{% url 'alumnos_del' pk=x.rut %}">Eliminar</a></td>
-                        <td> <a href="{% url 'alumnos_findEdit' pk=x.rut %}">Modificar</a></td>
+                        <td><a href="{% url 'alumnos_del' pk=x.rut %}">Eliminar</a></td>
+                        <td><a href="{% url 'alumnos_findEdit' pk=x.rut %}">Modificar</a></td>
                     </tr>
-                {% end for %}
+                {% endfor %}
             {% endif %}
-        </table>
-    
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        </tbody>
+    </table>
+
     <script>
         $(document).ready(function(){
             $("#idMensajes").delay(2000).fadeOut("slow");
         });
     </script>
-
-
 
 </body>
 </html>

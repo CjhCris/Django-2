@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Alumno</title>
+</head>
+<body>
+    <h1>Agregar Alumno</h1>
+    <form method="post">
+        {% csrf_token %}
+        <pre>Rut:         <input type="text" name="rut" value="{{ form.rut.value }}"></pre>
+        <pre>Nombre:      <input type="text" name="nombre" value="{{ form.nombre.value }}"></pre>
+        <pre>Apellido P.: <input type="text" name="paterno" value="{{ form.apellido_paterno.value }}"></pre>
+        <pre>Apellido M.: <input type="text" name="materno" value="{{ form.apellido_materno.value }}"></pre>
+        <pre>Fecha Nac.:  <input type="date" name="fechaNac" value="{{ form.fecha_nacimiento.value }}"></pre>
+        <pre>Genero:      <select name="genero">
+                            {% for genero in generos %}
+                                <option value="{{ genero.id }}">{{ genero.nombre }}</option>
+                            {% endfor %}
+                         </select></pre>
+        <pre>Celular:     <input type="text" name="telefono" value="{{ form.telefono.value }}"></pre>
+        <pre>Email:       <input type="text" name="email" value="{{ form.email.value }}"></pre>
+        <pre>Dirección:   <input type="text" name="direccion" value="{{ form.direccion.value }}"></pre>
+
+        <input type="submit" name="opcion" value="Agregar">
+    </form>
+
+    <br><br>
+    <a href="{% url 'crud' %}">Volver</a>
+</body>
+</html>
